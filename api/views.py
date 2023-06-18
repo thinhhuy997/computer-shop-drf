@@ -169,6 +169,35 @@ def ProudctMultipleCreateByCategory(request, categoryId):
 			except Exception as e:
 				print(e)
 		return Response({"Created multiple categories successfully!"})
+	
+
+@api_view(['GET', 'POST'])
+def productMultipleCreateWithCategories(request):
+	if request.method == "GET":
+		return Response({"This API is used to create multiple products with multiple categories"})
+	
+	if request.method == "POST":
+		for dataset in request.data['datasets']:
+			# if it doesn't exist, create a new one, if it already exists, get it and assign it to the variable "obj"
+			category_obj, created = Category.objects.get_or_create(name=dataset['category_name'])
+
+			for item in dataset['items']:
+				# create a product object
+				try:
+					product_obj = Product.objects.create(name=str(item['product_name']).strip(), price=float(item["product_price"]), description_from_crawler = item["product_description"])
+					product_obj.categories.add(category_obj.id)
+					print("Product with id {} is created successfully!".format(product_obj.id))
+				except Exception as e:
+					print(e)
+
+				# connect image_url object to above product object through foreign key
+				try:
+					for piu in item["product_img_urls"].split():
+						image_url_obj = ImageURL.objects.create(url = piu, product = product_obj)
+				except Exception as e:
+					print(e)
+
+		return Response({"testing..."})
 
 ############################ END OF PRODUCT VIEWS #####################################
 

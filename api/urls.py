@@ -23,5 +23,7 @@ urlpatterns = [
 	# used to create multiple products
 	path('product-multiple-create/', views.productMultipleCreate),
 	path('product-multiple-create-by-category/<int:categoryId>', views.ProudctMultipleCreateByCategory),
+    # Create multiple products with multiple categrories
+	path('product-multiple-create-with-categories/', views.productMultipleCreateWithCategories),
 	########################### End of Product #############################
 ]
