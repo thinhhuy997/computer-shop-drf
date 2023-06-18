@@ -25,7 +25,8 @@ SECRET_KEY = '-c1cg^-j%2l-e_-(0+ey030&yvz@^k$x@%w0pwgm#of%)qrqe+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ["*"]
+# Set some hosts to be allowed to access
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -89,10 +90,22 @@ WSGI_APPLICATION = 'computer_shop.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'computer_shop_db',
+#     }
+# }
+
+# CLOUD DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'computer_shop_db',
+        'NAME': 'computer-shop',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb+srv://thinhhuy68:huythinh97@atlascluster.haeqgze.mongodb.net/'
+        }  
     }
 }
 
@@ -134,6 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # CORS
