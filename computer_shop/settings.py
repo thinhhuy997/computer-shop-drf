@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'api.apps.ApiConfig',
-    
+
     'corsheaders',
     'rest_framework',
 
@@ -107,7 +107,7 @@ DATABASES = {
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': 'mongodb+srv://thinhhuy68:huythinh97@atlascluster.haeqgze.mongodb.net/'
-        }  
+        }
     }
 }
 
@@ -190,8 +190,11 @@ REST_FRAMEWORK = {
     ],
 }
 
-SIMPLE_JWT = { 
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=60),
+    # Set it True will be retun both access token and refresh token
+    "ROTATE_REFRESH_TOKENS": True,
 }
 
 # # vercel
@@ -201,8 +204,8 @@ SIMPLE_JWT = {
 # # your imports
 # urlpatterns = [
 #     #url paths
-    
-    
+
+
 # ]
 # urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
