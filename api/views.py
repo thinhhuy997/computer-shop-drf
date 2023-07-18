@@ -250,6 +250,7 @@ def getNotes(request):
     return Response(serializer.data)
 
 
+# only note owner can view their note
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def getDetailNote(request, pk):
