@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 from datetime import timedelta
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -100,16 +102,25 @@ WSGI_APPLICATION = 'computer_shop.wsgi.application'
 #     }
 # }
 
-# CLOUD DATABASE
+# MONGO CLOUD DATABASE
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'computer-shop',
+#         'ENFORCE_SCHEMA': False,
+#         'CLIENT': {
+#             'host': 'mongodb+srv://thinhhuy68:huythinh97@atlascluster.haeqgze.mongodb.net/'
+#         }
+#     }
+# }
+
+# Postgres Cloud DB
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'computer-shop',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': 'mongodb+srv://thinhhuy68:huythinh97@atlascluster.haeqgze.mongodb.net/'
-        }
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://computer_shop_db_user:cHq1Y9mAKOfRVCHXOC151XVcTMLV6zdo@dpg-citb7695rnuhcnsmattg-a.singapore-postgres.render.com/computer_shop_db',
+        conn_max_age=600
+    )
 }
 
 
