@@ -10,7 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ProductFilter
 from rest_framework.pagination import PageNumberPagination
-from .serializers import CategorySerializer, ProductSerializer, NoteSerializer
+from .serializers import CategorySerializer, ProductSerializer, ImageURLSerializer, NoteSerializer
 
 from .serializers import CustomTokenObtainPairSerializer
 
@@ -63,13 +63,6 @@ class CategoryListCreate(generics.ListCreateAPIView):
     search_fields = ['name']
 
 
-class CategoryListCreate(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    filter_backends = [SearchFilter]
-    search_fields = ['name']
-
-
 @api_view(['GET', 'PUT', 'DELETE'])
 def CategoryDetail(request, pk):
     try:
@@ -80,13 +73,19 @@ def CategoryDetail(request, pk):
     if request.method == "GET":
         serializers = CategorySerializer(category, many=False)
         return Response(serializers.data)
-
-
 ############################ END OF CATEGORY VIEWS ################################
 
 
-############################ PRODUCT VIEWS #####################################
+############################ IMAGE URLS VIEWS #################################
+class ImageurlListCreate(generics.ListCreateAPIView):
+    queryset = ImageURL.objects.all()
+    serializer_class = ImageURLSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['url']
+############################ END OF IMAGE URLS VIEWS ##########################
 
+
+############################ PRODUCT VIEWS ####################################
 class ProductListCreate(generics.ListCreateAPIView):
     queryset = Product.objects.all().order_by('-created_at')
     serializer_class = ProductSerializer

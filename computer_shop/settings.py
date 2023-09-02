@@ -118,10 +118,17 @@ WSGI_APPLICATION = 'computer_shop.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://computer_shop_db_user:cHq1Y9mAKOfRVCHXOC151XVcTMLV6zdo@dpg-citb7695rnuhcnsmattg-a.singapore-postgres.render.com/computer_shop_db',
-        conn_max_age=600
+        default=dj_database_url.parse(os.environ.get("DATABASE_URL"))
     )
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgres://computer_shop_db_user:cHq1Y9mAKOfRVCHXOC151XVcTMLV6zdo@dpg-citb7695rnuhcnsmattg-a.singapore-postgres.render.com/computer_shop_db',
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation

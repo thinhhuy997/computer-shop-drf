@@ -13,7 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ImageURLSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
+        model = ImageURL
         fields = '__all__'
 
 

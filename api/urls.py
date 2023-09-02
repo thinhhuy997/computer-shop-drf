@@ -20,6 +20,10 @@ urlpatterns = [
     path('category-multiple-create/', views.CategoryMultipleCreate),
     ########################### End of Category #############################
 
+    ########################## Image Urls #####################################
+    path('imageurl-list-create/', views.ImageurlListCreate.as_view()),
+    ########################## End of Image Urls ##############################
+
     ########################### Products #######################################
     path('product-list-create/', views.ProductListCreate.as_view()),
     path('product-multiple-create-page-pagination/',

@@ -19,7 +19,7 @@ class Product(models.Model):
         Category, related_name="product_list", blank=True)
     name = models.CharField(max_length=200)
     price = models.FloatField()
-    description_from_crawler = models.CharField(max_length=1500)
+    description_from_crawler = models.CharField(max_length=20000)
     # category
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
